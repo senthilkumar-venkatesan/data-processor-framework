@@ -1,0 +1,70 @@
+# Custom Bento pipeline using custom processors
+
+input:
+  kafka:
+    addresses: [127.0.0.1:19092]
+    topics: [events.raw]
+    consumer_group: demo-consumer
+    client_id: demo-processor
+    start_from_oldest: true
+
+pipeline:
+  threads: 4
+  processors:
+    # Parse JSON into structured form for downstream processors
+    - mapping: |
+        root = if this.type() == "object" { this } else { this.parse_json() }
+        root.tags = []
+
+    # Asset enrichment (custom) - looks for device.uid in OCSF events
+    - asset_enricher:
+        endpoint: ${ASSET_API:http://localhost:1080/asset}
+        id_field: device.uid
+        timeout: 5s
+    - mapping: |
+        root = this
+        root.tags = this.tags.append("asset_enricher")
+
+    # Threat intel enrichment (custom) - enriches OCSF observables
+    - threat_intel_enricher:
+        endpoint: ${THREAT_INTEL_API:http://localhost:1080/ioc}
+        timeout: 5s
+    - mapping: |
+        root = this
+        root.tags = this.tags.append("threat_intel_enricher")
+
+    # Category filter (custom)
+    - category_filter:
+        field: category
+        include: [security, finance]
+        exclude: [test]
+    - mapping: |
+        root = this
+        root.tags = this.tags.append("category_filter")
+
+output:
+  switch:
+    cases:
+      - check: this.class_uid == 2004
+        output:
+          kafka:
+            addresses: [127.0.0.1:19092]
+            topic: events.alerts
+      - check: this.class_uid == 5001
+        output:
+          kafka:
+            addresses: [127.0.0.1:19092]
+            topic: events.assets
+      - output:
+          kafka:
+            addresses: [127.0.0.1:19092]
+            topic: events.ready
+
+logger:
+  level: ${LOG_LEVEL:INFO}
+  format: logfmt
+
+http:
+  enabled: true
+  address: 0.0.0.0:4195
+  debug_endpoints: true

@@ -1,0 +1,7 @@
+#redpanda console configuration
+server:
+  listen: 0.0.0.0:8080
+
+kafka:
+  brokers:
+    - redpanda:9092

@@ -1,0 +1,583 @@
+[
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/asset/550e8400-e29b-41d4-a716-446655440001"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "uid": "550e8400-e29b-41d4-a716-446655440001",
+        "name": "WKS-HR-001",
+        "hostname": "workstation-001.corp.local",
+        "ip": "192.168.1.100",
+        "mac": "00:1B:63:84:45:E6",
+        "os": {
+          "name": "Windows 10 Enterprise",
+          "version": "22H2",
+          "build": "19045.3803"
+        },
+        "type": "Desktop",
+        "hardware_info": {
+          "cpu_type": "Intel Core i7-9700",
+          "cpu_count": 8,
+          "ram_size": 16384,
+          "disk_size": 512000
+        },
+        "owner": {
+          "name": "Alice Johnson",
+          "email": "alice.johnson@corp.com",
+          "uid": "u-1001"
+        },
+        "domain": "corp.local"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/asset/550e8400-e29b-41d4-a716-446655440002"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "uid": "550e8400-e29b-41d4-a716-446655440002",
+        "name": "WEB-SRV-01",
+        "hostname": "webserver-01.corp.local",
+        "ip": "10.0.1.50",
+        "mac": "00:50:56:A1:B2:C3",
+        "os": {
+          "name": "Windows Server 2022",
+          "version": "21H2",
+          "build": "20348.2227"
+        },
+        "type": "Server",
+        "hardware_info": {
+          "cpu_type": "Intel Xeon Gold 6248R",
+          "cpu_count": 16,
+          "ram_size": 65536,
+          "disk_size": 2000000
+        },
+        "location": {
+          "city": "New York",
+          "region": "NY",
+          "country": "US"
+        },
+        "domain": "corp.local"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/asset/550e8400-e29b-41d4-a716-446655440003"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "uid": "550e8400-e29b-41d4-a716-446655440003",
+        "name": "DB-SRV-01",
+        "hostname": "db-server-01.corp.local",
+        "ip": "10.0.2.100",
+        "mac": "00:50:56:D4:E5:F6",
+        "os": {
+          "name": "Ubuntu Server",
+          "version": "22.04 LTS",
+          "build": "5.15.0-91"
+        },
+        "type": "Server",
+        "hardware_info": {
+          "cpu_type": "AMD EPYC 7763",
+          "cpu_count": 32,
+          "ram_size": 131072,
+          "disk_size": 4000000
+        },
+        "location": {
+          "city": "New York",
+          "region": "NY",
+          "country": "US"
+        },
+        "domain": "corp.local"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/asset/550e8400-e29b-41d4-a716-446655440004"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "uid": "550e8400-e29b-41d4-a716-446655440004",
+        "name": "LAPTOP-DEV-005",
+        "hostname": "macbook-dev-005.corp.local",
+        "ip": "192.168.1.150",
+        "mac": "A4:83:E7:12:34:56",
+        "os": {
+          "name": "macOS",
+          "version": "14.2.1",
+          "build": "23C71"
+        },
+        "type": "Laptop",
+        "hardware_info": {
+          "cpu_type": "Apple M2 Pro",
+          "cpu_count": 12,
+          "ram_size": 32768,
+          "disk_size": 1000000
+        },
+        "owner": {
+          "name": "John Doe",
+          "email": "john.doe@corp.com",
+          "uid": "u-123"
+        },
+        "domain": "corp.local"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/asset/550e8400-e29b-41d4-a716-446655440005"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "uid": "550e8400-e29b-41d4-a716-446655440005",
+        "name": "WKS-IT-042",
+        "hostname": "workstation-042.corp.local",
+        "ip": "192.168.1.75",
+        "mac": "00:1B:63:99:88:77",
+        "os": {
+          "name": "Windows 11 Pro",
+          "version": "23H2",
+          "build": "22631.2861"
+        },
+        "type": "Desktop",
+        "hardware_info": {
+          "cpu_type": "Intel Core i9-13900K",
+          "cpu_count": 24,
+          "ram_size": 32768,
+          "disk_size": 1000000
+        },
+        "owner": {
+          "name": "Admin User",
+          "email": "admin@corp.com",
+          "uid": "u-456"
+        },
+        "domain": "corp.local"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/asset/550e8400-e29b-41d4-a716-446655440006"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "uid": "550e8400-e29b-41d4-a716-446655440006",
+        "name": "SRV-APP-03",
+        "hostname": "app-server-03.corp.local",
+        "ip": "10.0.3.25",
+        "mac": "00:50:56:F1:F2:F3",
+        "os": {
+          "name": "Red Hat Enterprise Linux",
+          "version": "9.3",
+          "build": "5.14.0-362"
+        },
+        "type": "Server",
+        "hardware_info": {
+          "cpu_type": "Intel Xeon Platinum 8380",
+          "cpu_count": 40,
+          "ram_size": 262144,
+          "disk_size": 8000000
+        },
+        "location": {
+          "city": "San Francisco",
+          "region": "CA",
+          "country": "US"
+        },
+        "domain": "corp.local"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/asset/550e8400-e29b-41d4-a716-446655440007"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "uid": "550e8400-e29b-41d4-a716-446655440007",
+        "name": "LAPTOP-SALES-022",
+        "hostname": "laptop-sales-022.corp.local",
+        "ip": "192.168.1.200",
+        "mac": "B8:27:EB:45:67:89",
+        "os": {
+          "name": "Windows 11 Enterprise",
+          "version": "23H2",
+          "build": "22631.2861"
+        },
+        "type": "Laptop",
+        "hardware_info": {
+          "cpu_type": "Intel Core i7-1365U",
+          "cpu_count": 10,
+          "ram_size": 16384,
+          "disk_size": 512000
+        },
+        "owner": {
+          "name": "Jane Smith",
+          "email": "jane.smith@corp.com",
+          "uid": "u-789"
+        },
+        "domain": "corp.local"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/asset/550e8400-e29b-41d4-a716-446655440008"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "uid": "550e8400-e29b-41d4-a716-446655440008",
+        "name": "FW-MAIN-01",
+        "hostname": "firewall-main.corp.local",
+        "ip": "10.0.0.1",
+        "mac": "00:0C:29:AA:BB:CC",
+        "os": {
+          "name": "pfSense",
+          "version": "2.7.2"
+        },
+        "type": "Firewall",
+        "hardware_info": {
+          "cpu_type": "Intel Xeon E-2388G",
+          "cpu_count": 8,
+          "ram_size": 32768,
+          "disk_size": 256000
+        },
+        "location": {
+          "city": "New York",
+          "region": "NY",
+          "country": "US"
+        }
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/asset/550e8400-e29b-41d4-a716-446655440009"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "uid": "550e8400-e29b-41d4-a716-446655440009",
+        "name": "RTR-CORE-01",
+        "hostname": "router-core-01.corp.local",
+        "ip": "10.0.0.254",
+        "mac": "00:1E:BD:11:22:33",
+        "os": {
+          "name": "Cisco IOS",
+          "version": "17.9.4a"
+        },
+        "type": "Router",
+        "hardware_info": {
+          "ram_size": 8192
+        },
+        "location": {
+          "city": "New York",
+          "region": "NY",
+          "country": "US"
+        }
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/asset/550e8400-e29b-41d4-a716-446655440010"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "uid": "550e8400-e29b-41d4-a716-446655440010",
+        "name": "WKS-FIN-099",
+        "hostname": "workstation-099.corp.local",
+        "ip": "192.168.1.99",
+        "mac": "00:1B:63:CC:DD:EE",
+        "os": {
+          "name": "Windows 7 Professional",
+          "version": "SP1",
+          "build": "7601"
+        },
+        "type": "Desktop",
+        "hardware_info": {
+          "cpu_type": "Intel Core 2 Duo E8400",
+          "cpu_count": 2,
+          "ram_size": 4096,
+          "disk_size": 250000
+        },
+        "owner": {
+          "name": "Finance User",
+          "email": "finance@corp.com",
+          "uid": "u-345"
+        },
+        "domain": "corp.local",
+        "end_of_life": "2020-01-14"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/ioc/evil.exe"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "indicator": "evil.exe",
+        "type": "file",
+        "threat_level": "high",
+        "malware_family": "Ransomware",
+        "first_seen": "2024-01-15",
+        "source": "VirusTotal"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/ioc/192.168.1.100"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "indicator": "192.168.1.100",
+        "type": "ip",
+        "threat_level": "medium",
+        "category": "C2 Server",
+        "first_seen": "2024-02-01",
+        "source": "AlienVault OTX"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/ioc/powershell.exe"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "indicator": "powershell.exe",
+        "type": "file",
+        "threat_level": "info",
+        "notes": "Legitimate Windows utility - suspicious when used in unusual context",
+        "source": "Internal"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/ioc/10.0.0.50"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "indicator": "10.0.0.50",
+        "type": "ip",
+        "threat_level": "low",
+        "category": "Scanning Activity",
+        "first_seen": "2024-01-20",
+        "source": "Internal IDS"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/ioc/exploit.dll"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "indicator": "exploit.dll",
+        "type": "file",
+        "threat_level": "critical",
+        "malware_family": "Exploit Kit",
+        "cve": "CVE-2024-1234",
+        "first_seen": "2024-02-10",
+        "source": "CISA"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/ioc/192.168.1.99"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "indicator": "192.168.1.99",
+        "type": "ip",
+        "threat_level": "high",
+        "category": "Lateral Movement",
+        "first_seen": "2024-02-14",
+        "source": "Internal SIEM"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/ioc/sensitive-data.zip"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "indicator": "sensitive-data.zip",
+        "type": "file",
+        "threat_level": "high",
+        "category": "Data Exfiltration",
+        "first_seen": "2024-02-15",
+        "source": "DLP System"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/ioc/backdoor.exe"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "indicator": "backdoor.exe",
+        "type": "file",
+        "threat_level": "critical",
+        "malware_family": "Backdoor",
+        "persistence_mechanism": "Startup",
+        "first_seen": "2024-01-10",
+        "source": "Mandiant"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/ioc/startup.lnk"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "indicator": "startup.lnk",
+        "type": "file",
+        "threat_level": "medium",
+        "category": "Persistence",
+        "first_seen": "2024-02-15",
+        "source": "Internal"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/ioc/apt-tool.exe"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "indicator": "apt-tool.exe",
+        "type": "file",
+        "threat_level": "critical",
+        "malware_family": "APT Tool",
+        "threat_actor": "APT28",
+        "first_seen": "2024-01-05",
+        "source": "Mandiant"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/ioc/c2-server.com"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "indicator": "c2-server.com",
+        "type": "domain",
+        "threat_level": "critical",
+        "category": "Command and Control",
+        "threat_actor": "APT28",
+        "first_seen": "2024-01-10",
+        "source": "Cisco Talos"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/ioc/10.0.0.1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "indicator": "10.0.0.1",
+        "type": "ip",
+        "threat_level": "high",
+        "category": "C2 Server",
+        "threat_actor": "APT28",
+        "first_seen": "2024-01-12",
+        "source": "Recorded Future"
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/ioc/.*"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": { "Content-Type": ["application/json"] },
+      "body": {
+        "indicator": "unknown",
+        "threat_level": "info",
+        "notes": "No threat intelligence available",
+        "source": "mock"
+      }
+    }
+  }
+]
+

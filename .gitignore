@@ -1,0 +1,54 @@
+# Binaries
+bin/
+data-processor
+bento
+*.exe
+*.out
+
+# Go
+*.test
+coverage.out
+coverage.html
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+.docker/
+
+# Environment
+.env
+.env.local
+*.env
+
+# Logs
+*.log
+logs/
+
+# Build
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.bak
+*~
+*.jsonl
+
+# Test files (optional - uncomment if you want to ignore test data)
+# test-*.sh
+# test-*.json
+
+# Scratch/notes
+todo
+TODO
+
+# Vendor (if not committed)
+# vendor/
