@@ -1,0 +1,54 @@
+# HTTP Receiver Pipeline
+# Receives events via HTTP POST, adds tags, and writes to Kafka
+
+# HTTP input receives events
+input:
+  http_receiver:
+    address: "0.0.0.0:9081"
+    path: "/events"
+    timeout: 30s
+    max_batch_size: 100
+
+pipeline:
+  threads: 4
+  processors:
+    - log:
+        level: INFO
+        message: "🔵 HTTP-TO-KAFKA CONFIG LOADED 🔵"
+    
+    # Add tags based on payload content
+    - payload_tagger:
+        tag_fields:
+          - class_uid
+          - severity_id
+          - category_uid
+        add_timestamp_tag: true
+        add_source_tag: true
+    
+    # Optional: Log tagged events for debugging
+    - log:
+        level: DEBUG
+        message: |
+          Tagged event: class_uid=${! meta("tag.class_uid") } severity=${! meta("tag.severity") } category=${! meta("tag.category") }
+
+# Output to Kafka
+output:
+  kafka:
+    addresses:
+      - localhost:19092
+    topic: events.raw
+    max_in_flight: 10
+    compression: snappy
+    # Metadata (tags) are automatically included as Kafka headers
+
+# Optional: Add batching for efficiency
+# output:
+#   kafka:
+#     addresses:
+#       - localhost:9092
+#     topic: events.tagged
+#     max_in_flight: 10
+#     compression: snappy
+#     batching:
+#       count: 100
+#       period: 1s

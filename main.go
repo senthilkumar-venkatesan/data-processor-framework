@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"os"
 	"os/signal"
 	"syscall"
@@ -13,12 +14,22 @@ import (
 	_ "github.com/warpstreamlabs/bento/public/components/kafka"
 	_ "github.com/warpstreamlabs/bento/public/components/pure"
 
-	// Register custom processors
+	// Register custom components
+	_ "github.com/data-processor-framework/internal/inputs"
 	_ "github.com/data-processor-framework/internal/processors"
+	// _ "github.com/data-processor-framework/internal/outputs"  // Uncomment when you create custom outputs
 )
 
 func main() {
-	configPath := os.Getenv("BENTO_CONFIG_PATH")
+	// Parse command line flags
+	configFlag := flag.String("c", "", "Path to configuration file")
+	flag.Parse()
+
+	// Determine config path: -c flag > env var > default
+	configPath := *configFlag
+	if configPath == "" {
+		configPath = os.Getenv("BENTO_CONFIG_PATH")
+	}
 	if configPath == "" {
 		configPath = "config/pipeline.yaml"
 	}

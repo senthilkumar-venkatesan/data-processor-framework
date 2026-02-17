@@ -1,0 +1,94 @@
+package inputs
+
+import (
+	"context"
+	"fmt"
+	"time"
+
+	"github.com/warpstreamlabs/bento/public/service"
+)
+
+// Example: Custom input that generates test events
+func init() {
+	// Register the custom input plugin
+	err := service.RegisterInput(
+		"test_event_generator",  // Name used in config
+		service.NewConfigSpec().
+			Summary("Generates test OCSF events for testing").
+			Field(service.NewIntField("count").Default(10).
+				Description("Number of events to generate")).
+			Field(service.NewDurationField("interval").Default("1s").
+				Description("Interval between events")),
+		func(conf *service.ParsedConfig, mgr *service.Resources) (service.Input, error) {
+			count, err := conf.FieldInt("count")
+			if err != nil {
+				return nil, err
+			}
+			interval, err := conf.FieldDuration("interval")
+			if err != nil {
+				return nil, err
+			}
+			return &TestEventGenerator{
+				count:    count,
+				interval: interval,
+				logger:   mgr.Logger(),
+			}, nil
+		})
+	if err != nil {
+		panic(err)
+	}
+}
+
+// TestEventGenerator is a custom input that generates test events
+type TestEventGenerator struct {
+	count    int
+	interval time.Duration
+	logger   *service.Logger
+	index    int
+}
+
+// Connect establishes connection (no-op for this example)
+func (g *TestEventGenerator) Connect(ctx context.Context) error {
+	g.logger.Info("Test event generator started")
+	return nil
+}
+
+// Read generates and returns test events
+func (g *TestEventGenerator) Read(ctx context.Context) (*service.Message, service.AckFunc, error) {
+	if g.index >= g.count {
+		// No more events to generate
+		return nil, nil, service.ErrEndOfInput
+	}
+
+	// Wait for interval
+	select {
+	case <-time.After(g.interval):
+	case <-ctx.Done():
+		return nil, nil, ctx.Err()
+	}
+
+	// Generate test event
+	event := fmt.Sprintf(`{
+		"metadata": {"version": "1.0.0"},
+		"class_uid": 2004,
+		"severity_id": 3,
+		"message": "Test event %d",
+		"observables": [
+			{"name": "test-%d.example.com", "type_id": 1}
+		]
+	}`, g.index, g.index)
+
+	msg := service.NewMessage([]byte(event))
+	g.index++
+
+	return msg, func(ctx context.Context, err error) error {
+		// Acknowledgement callback
+		return nil
+	}, nil
+}
+
+// Close cleans up resources
+func (g *TestEventGenerator) Close(ctx context.Context) error {
+	g.logger.Infof("Generated %d events", g.index)
+	return nil
+}

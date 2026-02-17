@@ -1,0 +1,54 @@
+# Example: Using Custom Input and Output
+
+# Custom input generates test events
+input:
+  test_event_generator:
+    count: 5
+    interval: 2s
+
+pipeline:
+  processors:
+    # Your custom processors
+    - threat_intel_enricher:
+        endpoint: "http://localhost:1080/ioc"
+        timeout: 5s
+
+# Custom output with formatted logging
+output:
+  formatted_logger:
+    show_metadata: true
+    prefix: "PROCESSED:"
+
+---
+
+# Example: Mix custom and standard components
+input:
+  kafka:
+    addresses: ["localhost:9092"]
+    topics: ["events.raw"]
+    consumer_group: "my-processor"
+
+pipeline:
+  processors:
+    # Custom processor
+    - asset_enricher:
+        endpoint: "http://localhost:8080/assets"
+        field: "device.uid"
+    
+    # Standard Bento processor
+    - log:
+        message: "Event processed: ${! json(\"class_uid\") }"
+
+output:
+  broker:
+    pattern: fan_out
+    outputs:
+      # Custom output
+      - formatted_logger:
+          show_metadata: false
+          prefix: "OUTPUT:"
+      
+      # Standard output
+      - kafka:
+          addresses: ["localhost:9092"]
+          topic: "events.processed"

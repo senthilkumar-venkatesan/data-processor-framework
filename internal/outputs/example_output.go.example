@@ -1,0 +1,94 @@
+package outputs
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+
+	"github.com/warpstreamlabs/bento/public/service"
+)
+
+// Example: Custom output that prints events with custom formatting
+func init() {
+	// Register the custom output plugin
+	err := service.RegisterOutput(
+		"formatted_logger",  // Name used in config
+		service.NewConfigSpec().
+			Summary("Outputs events with custom formatting").
+			Field(service.NewBoolField("show_metadata").Default(true).
+				Description("Whether to include metadata in output")).
+			Field(service.NewStringField("prefix").Default("EVENT:").
+				Description("Prefix for each log line")),
+		func(conf *service.ParsedConfig, mgr *service.Resources) (service.Output, int, error) {
+			showMeta, err := conf.FieldBool("show_metadata")
+			if err != nil {
+				return nil, 0, err
+			}
+			prefix, err := conf.FieldString("prefix")
+			if err != nil {
+				return nil, 0, err
+			}
+			return &FormattedLogger{
+				showMetadata: showMeta,
+				prefix:       prefix,
+				logger:       mgr.Logger(),
+			}, 1, nil // maxInFlight = 1
+		})
+	if err != nil {
+		panic(err)
+	}
+}
+
+// FormattedLogger is a custom output that prints formatted events
+type FormattedLogger struct {
+	showMetadata bool
+	prefix       string
+	logger       *service.Logger
+}
+
+// Connect establishes connection (no-op for this example)
+func (f *FormattedLogger) Connect(ctx context.Context) error {
+	f.logger.Info("Formatted logger output started")
+	return nil
+}
+
+// Write outputs the message with custom formatting
+func (f *FormattedLogger) Write(ctx context.Context, msg *service.Message) error {
+	data, err := msg.AsBytes()
+	if err != nil {
+		return err
+	}
+
+	// Parse as JSON to extract fields
+	var event map[string]interface{}
+	if err := json.Unmarshal(data, &event); err != nil {
+		// If not JSON, just print raw
+		fmt.Printf("%s %s\n", f.prefix, string(data))
+		return nil
+	}
+
+	// Extract key fields
+	classUID := event["class_uid"]
+	severity := event["severity_id"]
+	message := event["message"]
+
+	// Format output
+	output := fmt.Sprintf("%s [class=%v severity=%v] %v",
+		f.prefix, classUID, severity, message)
+
+	// Optionally show full metadata
+	if f.showMetadata {
+		if meta, ok := event["metadata"]; ok {
+			output += fmt.Sprintf(" | meta=%v", meta)
+		}
+	}
+
+	fmt.Println(output)
+	return nil
+}
+
+// Close cleans up resources
+func (f *FormattedLogger) Close(ctx context.Context) error {
+	f.logger.Info("Formatted logger output closed")
+	return nil
+}
